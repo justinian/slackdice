@@ -27,3 +27,10 @@ build:
         code: |
           go test ./...
 
+deploy:
+  steps:
+    - jakubriedl/docker-push:
+        image: justinian/slackdice:${WERCKER_GIT_COMMIT:0:7}
+        email: ${DOCKER_HUB_EMAIL}
+        password: ${DOCKER_HUB_PASSWORD}
+        username: ${DOCKER_HUB_USERNAME}
