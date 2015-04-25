@@ -32,7 +32,7 @@ deploy:
     - script:
         name: install docker
         code: |
-            apt-get install -y docker
+            sudo apt-get install -y docker
 
     - jakubriedl/docker-push:
         image: justinian/slackdice:${WERCKER_GIT_COMMIT:0:7}
