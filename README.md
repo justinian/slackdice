@@ -1,7 +1,7 @@
 # slackdice
 
 Slackdice is a golang webservice to implement Slack /roll and /rollprivate commands,
-taking any dice argument supported by my [dice](https://github.com/justinian/slackdice)
+taking any dice argument supported by my [dice](https://github.com/justinian/dice)
 library. You can set these commands to be anything you'd like when you configure the
 integration on the Slack side. Your Slack team will need incoming webhooks configured.
 See [Incoming Webhooks](https://my.slack.com/services/new/incoming-webhook).
