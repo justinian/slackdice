@@ -37,7 +37,7 @@ func rollHandler(c Config, private bool) http.HandlerFunc {
 			log.Printf("Private roll for %s: %s = %v", user, desc, result)
 		} else {
 			m := SlackMessage{
-				Text:     fmt.Sprintf("*%s* rolled `%s` and got:\n_%v_", user, desc, result),
+				Text:     fmt.Sprintf("*<@%s>* rolled `%s` and got:\n_%v_", user, desc, result),
 				Username: "rollbot",
 				Channel:  channelId,
 				Icon:     ":d20:",
