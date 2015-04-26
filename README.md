@@ -15,6 +15,8 @@ is your incoming webhook integration URL.
 docker run -d -e SLACKDICE_SLACK_URL="<your incoming webhook URL>" -p 8000:8000 --name=slackdice shipway.io/justinian/slackdice
 ```
 
+See the docker container builds at https://shipway.io/justinian/slackdice
+
 ## Installing into Slack
 
 Just add a slash command integration pointing at your service. Slackdice supports two
