@@ -5,7 +5,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"math/rand"
 	"net/http"
+	"time"
 
 	"github.com/justinian/dice"
 	"github.com/kelseyhightower/envconfig"
@@ -68,6 +70,7 @@ type Config struct {
 
 func main() {
 	c := Config{Listen: ":8000"}
+	rand.Seed(time.Now().UnixNano())
 
 	err := envconfig.Process("slackdice", &c)
 	if err != nil {
