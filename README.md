@@ -12,7 +12,7 @@ The service is most easily run as a docker container. The only configuration nec
 is your incoming webhook integration URL.
 
 ```bash
-docker run -d -e SLACKDICE_SLACK_URL="<your incoming webhook URL>" -p 8000:8000 --name=slackdice justinian/slackdice
+docker run -d -e SLACKDICE_SLACK_URL="<your incoming webhook URL>" -p 8000:8000 --name=slackdice shipway.io/justinian/slackdice
 ```
 
 ## Installing into Slack
