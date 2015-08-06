@@ -1,5 +1,7 @@
 # slackdice
 
+![Docker Hub build badge](https://dockeri.co/image/justinian/slackdice)
+
 Slackdice is a golang webservice to implement Slack /roll and /rollprivate commands,
 taking any dice argument supported by my [dice](https://github.com/justinian/dice)
 library. You can set these commands to be anything you'd like when you configure the
@@ -12,10 +14,10 @@ The service is most easily run as a docker container. The only configuration nec
 is your incoming webhook integration URL.
 
 ```bash
-docker run -d -e SLACKDICE_SLACK_URL="<your incoming webhook URL>" -p 8000:8000 --name=slackdice shipway.io/justinian/slackdice
+docker run -d -e SLACKDICE_SLACK_URL="<your incoming webhook URL>" -p 8000:8000 --name=slackdice justinian/slackdice
 ```
 
-See the docker container builds at https://shipway.io/justinian/slackdice
+See the docker container builds at https://registry.hub.docker.com/u/justinian/slackdice
 
 ## Installing into Slack
 
