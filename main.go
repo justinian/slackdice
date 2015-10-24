@@ -28,18 +28,22 @@ func rollHandler(c Config, private bool) http.HandlerFunc {
 		channel := r.PostFormValue("channel_name")
 		channelId := r.PostFormValue("channel_id")
 
-		result, err := dice.Roll(desc)
+		result, reason, err := dice.Roll(desc)
 		if err != nil {
 			fmt.Fprintf(w, "Error: %s", err.Error())
 			return
 		}
 
 		if private {
-			fmt.Fprintf(w, "You rolled: %v", result)
-			log.Printf("Private roll for %s: %s = %v", user, desc, result)
+			fmt.Fprintf(w, "You rolled %s: %v", reason, result)
+			log.Printf("Private roll for %s (%s): %s = %v", user, reason, desc, result)
 		} else {
+			if reason != "" {
+				reason = fmt.Sprintf(" *%s*", reason)
+			}
+
 			m := SlackMessage{
-				Text:     fmt.Sprintf("*<@%s>* rolled `%s` and got:\n_%v_", user, desc, result),
+				Text:     fmt.Sprintf("*<@%s>* rolled%s:\n`%s`\n_%v_", user, reason, desc, result),
 				Username: "rollbot",
 				Channel:  channelId,
 				Icon:     ":d20:",
@@ -58,7 +62,7 @@ func rollHandler(c Config, private bool) http.HandlerFunc {
 				fmt.Fprintf(w, "Error: %s", err.Error())
 			}
 
-			log.Printf("Roll for %s in %s(%s): %s = %v", user, channel, channelId, desc, result)
+			log.Printf("Roll for %s in %s(%s) [%s]: %s = %v", user, channel, channelId, reason, desc, result)
 		}
 	}
 }
