@@ -43,7 +43,7 @@ func rollHandler(c Config, private bool) http.HandlerFunc {
 			}
 
 			m := SlackMessage{
-				Text:     fmt.Sprintf("*<@%s>* rolled%s `%s`:\n_%v_", user, reason, result.Description(), result),
+				Text:     fmt.Sprintf("*<@%s>* rolled`%s`:%s\n_%v_", user, result.Description(), reason, result),
 				Username: "rollbot",
 				Channel:  channelId,
 				Icon:     ":d20:",
