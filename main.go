@@ -36,14 +36,14 @@ func rollHandler(c Config, private bool) http.HandlerFunc {
 
 		if private {
 			fmt.Fprintf(w, "You rolled %s: %v", reason, result)
-			log.Printf("Private roll for %s (%s): %s = %v", user, reason, desc, result)
+			log.Printf("Private roll for %s (%s): %s = %v", user, reason, result.Description(), result)
 		} else {
 			if reason != "" {
 				reason = fmt.Sprintf(" *%s*", reason)
 			}
 
 			m := SlackMessage{
-				Text:     fmt.Sprintf("*<@%s>* rolled%s:\n`%s`\n_%v_", user, reason, desc, result),
+				Text:     fmt.Sprintf("*<@%s>* rolled%s `%s`:\n_%v_", user, reason, result.Description(), result),
 				Username: "rollbot",
 				Channel:  channelId,
 				Icon:     ":d20:",
@@ -62,7 +62,7 @@ func rollHandler(c Config, private bool) http.HandlerFunc {
 				fmt.Fprintf(w, "Error: %s", err.Error())
 			}
 
-			log.Printf("Roll for %s in %s(%s) [%s]: %s = %v", user, channel, channelId, reason, desc, result)
+			log.Printf("Roll for %s in %s(%s) [%s]: %s = %v", user, channel, channelId, reason, result.Description(), result)
 		}
 	}
 }
