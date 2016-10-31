@@ -7,6 +7,7 @@ import (
 	"log"
 	"math/rand"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/justinian/dice"
@@ -42,8 +43,13 @@ func rollHandler(c Config, private bool) http.HandlerFunc {
 				reason = fmt.Sprintf(" *%s*", reason)
 			}
 
+			resultStrs := strings.Split(result.String(), "\n")
+			for i, s := range resultStrs {
+				resultStrs[i] = fmt.Sprintf("_%s_", s)
+			}
+
 			m := SlackMessage{
-				Text:     fmt.Sprintf("*<@%s>* rolled `%s`:%s\n_%v_", user, result.Description(), reason, result),
+				Text:     fmt.Sprintf("*<@%s>* rolled `%s`:%s\n%s", user, result.Description(), reason, strings.Join(resultStrs, "\n")),
 				Username: "rollbot",
 				Channel:  channelId,
 				Icon:     ":d20:",
