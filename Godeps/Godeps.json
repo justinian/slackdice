@@ -5,7 +5,7 @@
 	"Deps": [
 		{
 			"ImportPath": "github.com/justinian/dice",
-			"Rev": "773349746bf0d3fd0bbd60bb7b5a0294c1971ab3"
+			"Rev": "b510a563f39fafd6d86e29cd4eec613a2e491128"
 		},
 		{
 			"ImportPath": "github.com/kelseyhightower/envconfig",
