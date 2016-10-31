@@ -1,10 +1,11 @@
 {
 	"ImportPath": "github.com/justinian/slackdice",
 	"GoVersion": "go1.5",
+	"GodepVersion": "v74",
 	"Deps": [
 		{
 			"ImportPath": "github.com/justinian/dice",
-			"Rev": "4976dcf3d88f1424ed1f900eb016c20b1d69bb60"
+			"Rev": "773349746bf0d3fd0bbd60bb7b5a0294c1971ab3"
 		},
 		{
 			"ImportPath": "github.com/kelseyhightower/envconfig",
