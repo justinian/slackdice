@@ -45,7 +45,11 @@ func rollHandler(c Config, private bool) http.HandlerFunc {
 
 			resultStrs := strings.Split(result.String(), "\n")
 			for i, s := range resultStrs {
-				resultStrs[i] = fmt.Sprintf("_%s_", s)
+				if i == 0 {
+					resultStrs[i] = fmt.Sprintf("*%s*", s)
+				} else {
+					resultStrs[i] = fmt.Sprintf("_%s_", s)
+				}
 			}
 
 			m := SlackMessage{
