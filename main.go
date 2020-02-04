@@ -78,12 +78,12 @@ func rollHandler(c Config, private bool) http.HandlerFunc {
 }
 
 type Config struct {
-	Listen   string
+	Port     int `envconfig:"port"`
 	SlackUrl string `envconfig:"slack_url"`
 }
 
 func main() {
-	c := Config{Listen: ":8000"}
+	c := Config{Port: 8000}
 	rand.Seed(time.Now().UnixNano())
 
 	err := envconfig.Process("slackdice", &c)
@@ -94,5 +94,8 @@ func main() {
 	http.HandleFunc("/roll", rollHandler(c, false))
 	http.HandleFunc("/roll/private", rollHandler(c, true))
 
-	log.Fatal(http.ListenAndServe(c.Listen, nil))
+	listen := fmt.Sprintf(":%d", c.Port)
+	log.Printf("Starting up, listening on %s", listen)
+
+	log.Fatal(http.ListenAndServe(listen, nil))
 }
