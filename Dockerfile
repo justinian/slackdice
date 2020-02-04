@@ -1,12 +1,15 @@
-FROM golang:1.4
-MAINTAINER Justin C. Miller <justin@devjustinian.com>
+FROM golang:1.13-buster as builder
+MAINTAINER Justin C. Miller <justin@justin.cm>
 
-RUN go get github.com/tools/godep
+ADD . /app
+WORKDIR /app
+RUN go build
 
-ADD . /go/src/github.com/justinian/slackdice
 
-RUN cd /go/src/github.com/justinian/slackdice && godep go install
+FROM debian:buster-slim as runner
 
-CMD ["/go/bin/slackdice"]
+RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
+COPY --from=builder /app/slackdice /app/slackdice
 
-EXPOSE 8000
+WORKDIR /app
+CMD ["./slackdice"]
